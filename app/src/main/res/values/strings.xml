@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">NavDraw</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="registrieren">Registrieren</string>
+    <string name="long_title_name_gym">Akademie für Selbstverteidigung Kassel</string>
+    <string name="profilbild">Profilbild?</string>
+    <string name="title_activity_athlete_list_item">athlete_list_item</string>
+</resources>
