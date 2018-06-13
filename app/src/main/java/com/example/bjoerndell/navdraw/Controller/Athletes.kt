@@ -33,6 +33,8 @@ class Athletes : AppCompatActivity() {
         println(shortMA)
 
         adapter = AthleteProfileAdapter(this, DataService.users) { athlete ->
+
+            Toast.makeText(this, "Test", Toast.LENGTH_LONG).show()
             val intentTraining = Intent(this, TrainingDetail::class.java)
             intentTraining.putExtra(EXTRA_MARTIALARTTYPE, shortMA)
             startActivity(intentTraining)

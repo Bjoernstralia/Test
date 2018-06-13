@@ -4,6 +4,8 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.view.LayoutInflater
+import android.view.View
 import com.example.bjoerndell.navdraw.Adapter.TrainingDetailAdapter
 import com.example.bjoerndell.navdraw.R
 import com.example.bjoerndell.navdraw.R.id.imageView
@@ -28,7 +30,12 @@ class TrainingDetail : AppCompatActivity() {
 
         adapter = TrainingDetailAdapter(this, DataService.bjj) {moveTrain ->
 
-            Toast.makeText(this, "Clicked on ${moveTrain.TrainingTypeName}", Toast.LENGTH_SHORT)
+            Toast.makeText(this, "Clicked on ${moveTrain.TrainingTypeName}", Toast.LENGTH_SHORT).show()
+
+            //Wie kann ich jetzt z.B. auf ein einzelnes Elemet des Listenelements zugreifen und dort den
+            //Hintergrund ändern?
+
+
         }
 
         val layoutTraining = GridLayoutManager(this, 3)
