@@ -23,7 +23,9 @@ import android.view.Gravity
 import android.widget.PopupWindow
 import android.content.Context.LAYOUT_INFLATER_SERVICE
 import android.view.LayoutInflater
-
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -56,7 +58,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         contentListViewMain.setOnItemClickListener { parent: AdapterView<*>?, view: View?, position: Int, id: Long ->
             val listItem = DataService.martialarts[position]
-            Toast.makeText(this , "clicken on ${listItem.nameType} cell", Toast.LENGTH_SHORT).show()
+            //Toast.makeText(this , "clicken on ${listItem.nameType} cell", Toast.LENGTH_SHORT).show()
 
             val intentAthletes = Intent(this, Athletes::class.java)
             intentAthletes.putExtra(EXTRA_MARTIALARTTYPE, listItem.NameTypeShort)

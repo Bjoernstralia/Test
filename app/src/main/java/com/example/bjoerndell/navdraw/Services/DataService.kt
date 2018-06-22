@@ -13,11 +13,11 @@ object DataService {
     )
 
     val bjj = listOf(
-            TrainingType("BJJ-Drills", 2.0),
-            TrainingType("Open Mat", 2.0),
-            TrainingType("BJJ-Basics", 1.0),
-            TrainingType("BJJ-Team", 1.5),
-            TrainingType("NoGi", 1.0)
+            TrainingType("BJJ Drills", 2.0, false),
+            TrainingType("Open Mat", 2.0, false),
+            TrainingType("BJJ Basics", 1.0, false),
+            TrainingType("BJJ Team", 1.5, false),
+            TrainingType("BJJ NoGi", 1.0, true)
     )
 
     val wingtsun = listOf(

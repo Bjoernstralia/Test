@@ -17,7 +17,7 @@ import android.view.Gravity
 import android.widget.PopupWindow
 import android.content.Context.LAYOUT_INFLATER_SERVICE
 import android.view.LayoutInflater
-
+import com.example.bjoerndell.navdraw.Utilitiy.EXTRA_ATHLETE
 
 
 class Athletes : AppCompatActivity() {
@@ -34,9 +34,12 @@ class Athletes : AppCompatActivity() {
 
         adapter = AthleteProfileAdapter(this, DataService.users) { athlete ->
 
-            Toast.makeText(this, "Test", Toast.LENGTH_LONG).show()
+            val listItem = athlete.name
+
+            Toast.makeText(this, listItem.toString(), Toast.LENGTH_LONG).show()
             val intentTraining = Intent(this, TrainingDetail::class.java)
             intentTraining.putExtra(EXTRA_MARTIALARTTYPE, shortMA)
+            intentTraining.putExtra(EXTRA_ATHLETE, listItem)
             startActivity(intentTraining)
         }
 
