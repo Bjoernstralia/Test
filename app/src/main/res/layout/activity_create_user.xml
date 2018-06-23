@@ -10,81 +10,60 @@
 
 
     <EditText
-        android:id="@+id/txtFirstNameReg"
+        android:id="@+id/txtEmail"
         android:layout_width="0dp"
         android:layout_height="45dp"
         android:layout_marginEnd="32dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="120dp"
         android:background="@drawable/bt_fr"
         android:ems="10"
-        android:hint="Vorname"
-        android:inputType="textPersonName"
+        android:hint="E-Mail"
+        android:inputType="textEmailAddress"
         android:textAlignment="center"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/txtLastNameReg"
+        android:id="@+id/txtPin"
         android:layout_width="0dp"
         android:layout_height="45dp"
         android:layout_marginEnd="32dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        android:textColor="@color/white"
+        android:layout_marginTop="12dp"
         android:background="@drawable/bt_fr"
+        android:maxLength="6"
         android:ems="10"
-        android:hint="Nachname"
-        android:inputType="textPersonName"
+        android:hint="PIN"
+        android:inputType="numberPassword"
         android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtFirstNameReg" />
-
-    <TextView
-        android:id="@+id/createUserTxtPic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
-        android:text="@string/profilbild"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtLastNameReg" />
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="77dp"
-        android:layout_height="62dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/createUserTxtPic"
-        app:srcCompat="@drawable/ic_menu_camera" />
+        app:layout_constraintTop_toBottomOf="@+id/txtEmail" />
 
     <Button
         android:id="@+id/createUserRegisterBtn"
         android:layout_width="0dp"
         android:layout_height="43dp"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="32dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="28dp"
         android:background="@drawable/bt_fr_red"
         android:text="@string/registrieren"
         android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2"
-        android:layout_gravity = "bottom"/>
+        app:layout_constraintTop_toBottomOf="@+id/txtPin"
+        app:layout_constraintVertical_bias="0.009" />
 
 
 
