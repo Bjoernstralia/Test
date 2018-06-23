@@ -23,6 +23,7 @@ import android.view.Gravity
 import android.widget.PopupWindow
 import android.content.Context.LAYOUT_INFLATER_SERVICE
 import android.view.LayoutInflater
+import com.google.firebase.auth.FirebaseAuth
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
@@ -31,6 +32,15 @@ import java.util.*
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     lateinit var adapter: MartialArtTypeAdapter
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        val auth = FirebaseAuth.getInstance()
+        if (auth.currentUser != null){
+            auth.signOut()
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
