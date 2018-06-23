@@ -11,7 +11,7 @@ import com.example.bjoerndell.navdraw.Model.User
 import com.example.bjoerndell.navdraw.R
 import kotlinx.android.synthetic.main.athlete_list_item.view.*
 
-class AthleteProfileAdapter(val context: Context, val athletes: List<User>, val itemClick: (User)-> Unit) : RecyclerView.Adapter<AthleteProfileAdapter.AthleteProfileHolder>() {
+class AthleteProfileAdapter(val context: Context, val athletes: MutableList<User>, val itemClick: (User)-> Unit) : RecyclerView.Adapter<AthleteProfileAdapter.AthleteProfileHolder>() {
 
 
     override fun onBindViewHolder(holder: AthleteProfileHolder, position: Int) {

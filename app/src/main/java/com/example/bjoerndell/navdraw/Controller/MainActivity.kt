@@ -24,6 +24,10 @@ import android.widget.PopupWindow
 import android.content.Context.LAYOUT_INFLATER_SERVICE
 import android.view.LayoutInflater
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
@@ -33,20 +37,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     lateinit var adapter: MartialArtTypeAdapter
 
-    override fun onDestroy() {
-        super.onDestroy()
-
-        val auth = FirebaseAuth.getInstance()
-        if (auth.currentUser != null){
-            auth.signOut()
-        }
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
-
 
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)

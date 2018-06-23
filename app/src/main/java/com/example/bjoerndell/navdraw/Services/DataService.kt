@@ -3,6 +3,7 @@ package com.example.bjoerndell.navdraw.Services
 import com.example.bjoerndell.navdraw.Model.MartialArtType
 import com.example.bjoerndell.navdraw.Model.TrainingType
 import com.example.bjoerndell.navdraw.Model.User
+import com.google.firebase.database.FirebaseDatabase
 
 object DataService {
 
@@ -30,22 +31,23 @@ object DataService {
             TrainingType("Kickboxing", 1.0)
     )
 
-
-
-    val users = listOf(
-            User("Björn","Viehmann", "me"),
-            User("Serkan", "Ortac","placeholder_person"),
-            User("Dennis","Viehmann","placeholder_person"),
-            User("Dima", "Ortac","placeholder_person"),
-            User("Murat","Viehmann","placeholder_person"),
-            User("Arjan", "Ortac","placeholder_person"),
-            User("Benny","Viehmann","placeholder_person"),
-            User("Michele", "Ortac","placeholder_person"),
-            User("User1","Viehmann","placeholder_person"),
-            User("User2", "Ortac","placeholder_person"),
-            User("User3","Viehmann","placeholder_person"),
-            User("User4", "Ortac","placeholder_person"),
-            User("User5","Viehmann","placeholder_person")
+    val users = mutableListOf(
+            User("Björn","Viehmann", "me","1"),
+            User("Serkan", "Ortac","placeholder_person","2"),
+            User("Dennis","Viehmann","placeholder_person","3"),
+            User("Dima", "Ortac","placeholder_person","4"),
+            User("Murat","Viehmann","placeholder_person","5"),
+            User("Arjan", "Ortac","placeholder_person","6"),
+            User("Benny","Viehmann","placeholder_person","7"),
+            User("Michele", "Ortac","placeholder_person","8"),
+            User("User1","Viehmann","placeholder_person","9"),
+            User("User2", "Ortac","placeholder_person","10"),
+            User("User3","Viehmann","placeholder_person","11"),
+            User("User4", "Ortac","placeholder_person","12"),
+            User("User5","Viehmann","placeholder_person","13")
     )
+
+
+
 
 }

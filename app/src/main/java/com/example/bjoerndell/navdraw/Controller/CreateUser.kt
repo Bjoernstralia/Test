@@ -114,6 +114,7 @@ class CreateUser : AppCompatActivity() {
             progress.dismiss()
             if(task.isSuccessful){
                 Toast.makeText(this,"Du bist registriert", Toast.LENGTH_SHORT).show()
+                finish()
                 val intent = Intent(this, ProfileUser::class.java)
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                 startActivity(intent)

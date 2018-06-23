@@ -14,7 +14,10 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.UserProfileChangeRequest
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.activity_create_user.*
 import kotlinx.android.synthetic.main.activity_profile_user.*
 
@@ -28,6 +31,7 @@ class ProfileUser : AppCompatActivity() {
         setContentView(R.layout.activity_profile_user)
 
         mAuth = FirebaseAuth.getInstance()
+
         val user = mAuth.currentUser
         if (user != null){
             //User already logged in; start ProfileActivity
@@ -76,10 +80,29 @@ class ProfileUser : AppCompatActivity() {
                     progress.dismiss()
                     if (it.isSuccessful){
                         Toast.makeText(this, "Profil aktualisiert", Toast.LENGTH_LONG).show()
+                        mAuth.signOut()
+                        finish()
+
                     } else {
                         Toast.makeText(this, it.exception?.message.toString(), Toast.LENGTH_LONG).show()
                     }
+        }
+
+
+        //TEST START
+        val mMobileArray = ArrayList<User>()
+        fbDataBase.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot?) {
+                val tt = snapshot!!.children
+                tt.forEach(){
+                    println("#Logging: ${it.value.toString()}")
                 }
+            }
+            override fun onCancelled(p0: DatabaseError?) {
+            }
+        })
+        //TEST ENDE
+
 
     }
 }
