@@ -30,11 +30,18 @@ dependencies {
     implementation 'com.android.support.constraint:constraint-layout:1.1.0'
     implementation 'com.google.firebase:firebase-database:11.6.0'
     implementation 'com.google.firebase:firebase-auth:11.6.0'
+    implementation 'com.google.firebase:firebase-storage:11.6.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    implementation 'de.hdodenhof:circleimageview:2.2.0'
 
+    //external libs
+    implementation 'de.hdodenhof:circleimageview:2.2.0'
+    implementation 'com.karumi:dexter:5.0.0'
+    implementation 'com.jakewharton:butterknife:8.8.1'
+    implementation 'com.facebook.fresco:fresco:1.9.0'
+
+    //implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
 }
 
 apply plugin: 'com.google.gms.google-services'

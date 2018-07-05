@@ -12,8 +12,8 @@ import kotlinx.android.synthetic.main.activity_training_detail.*
 import android.widget.Toast
 import com.example.bjoerndell.navdraw.Model.AthleteTrainingLog
 import com.example.bjoerndell.navdraw.Model.TrainingType
-import com.example.bjoerndell.navdraw.Model.User
 import com.example.bjoerndell.navdraw.Utilitiy.EXTRA_ATHLETE
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import java.text.SimpleDateFormat
 import java.util.*
@@ -22,6 +22,8 @@ import java.util.*
 class TrainingDetail : AppCompatActivity() {
 
     lateinit var adapter: TrainingDetailAdapter
+    lateinit var mAuth: FirebaseAuth
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,10 +31,16 @@ class TrainingDetail : AppCompatActivity() {
 
         val shortMA = intent.getStringExtra(EXTRA_MARTIALARTTYPE)
         val athlete = intent.getStringExtra(EXTRA_ATHLETE)
-        //Wennn ich die eindeutige UserID übergebe, kann ich
-        //danach in Datenbank nach allen Userdetails suchen und diese in variablen Speichern?
 
-        adapter = TrainingDetailAdapter(this, DataService.bjj)
+        var serviceData: List<TrainingType>
+
+
+        when(shortMA){
+            "BJJ" -> adapter = TrainingDetailAdapter(this, DataService.bjj)
+            "WT" -> adapter = TrainingDetailAdapter(this, DataService.wingtsun)
+            "KB" -> adapter = TrainingDetailAdapter(this, DataService.kickboxing)
+        }
+        //adapter = TrainingDetailAdapter(this, DataService.bjj)
 
         var spanCount: Int
         val displaySize = resources.configuration.screenWidthDp
@@ -53,13 +61,8 @@ class TrainingDetail : AppCompatActivity() {
         trainingdetRecView.layoutManager = layoutTraining
         trainingdetRecView.adapter = adapter
 
-
         btnStartTraining.setOnClickListener() {
-
-            //val List = adapter.getTrueValues()
-
             WriteData(athlete)
-
         }
     }
 
@@ -69,35 +72,42 @@ class TrainingDetail : AppCompatActivity() {
 
     fun WriteData(athlete: String) {
 
-        val calendar: Calendar = Calendar.getInstance()
-        val currentDate = SimpleDateFormat("dd.MM.yyyy").format(calendar.time)
-        val List = adapter.getTrueValues()
-        var i = 0
+        mAuth = FirebaseAuth.getInstance()
 
-        val fb = FirebaseDatabase.getInstance().getReference("TrainingLog")
-
-        //Toast.makeText(this, List[0].TrainingTypeName, Toast.LENGTH_LONG).show()
-        while (i != List.count()) {
-            var Item = List[i].TrainingTypeName.toString()
-            var duration = List[i].Duration
-            println(Item)
-
-            var trainingId = fb.push().key
-            var detail = AthleteTrainingLog(trainingId, athlete, Item,currentDate)
-
-            //Mit oder ohne .child?
-            //fb.setValue(trainingDetail)
-
-            fb.child(trainingId).setValue(detail).addOnCompleteListener() {
-                Toast.makeText(applicationContext, "Training wurde angelegt!", Toast.LENGTH_SHORT).show()
-            }
-            //fb.child(trainingID).setValue(athlete).addOnCompleteListener(){
-            //   Toast.makeText(applicationContext, "Benutzer wurde hinzugefügt!", Toast.LENGTH_SHORT).show()
-            //
-            i++
+        val user = mAuth.currentUser
+        if (user ==null){
+            Toast.makeText(this,"Kein Benutzer angemeldet", Toast.LENGTH_LONG).show()
+            return
         }
 
-        //val text = "$currentDate | $athlete"
-        //ToastDummy(this, text.toString())
-    }
+            val calendar: Calendar = Calendar.getInstance()
+            val currentDate = SimpleDateFormat("dd.MM.yyyy").format(calendar.time)
+            val selectedTraining = adapter.getTrueValues()
+            var i = 0
+
+            val fb = FirebaseDatabase.getInstance().getReference("TrainingLog")
+
+            while (i != selectedTraining.count()) {
+                var selectedItem = selectedTraining[i].TrainingTypeName
+                var duration = selectedTraining[i].Duration
+                println(selectedItem)
+
+                var trainingId = fb.push().key
+                var detail = AthleteTrainingLog(trainingId, user!!.uid, selectedItem,currentDate)
+
+                //Mit oder ohne .child?
+                //fb.setValue(trainingDetail)
+                fb.child(trainingId).setValue(detail).addOnCompleteListener() {
+                    if (it.isSuccessful){
+                        Toast.makeText(applicationContext, "Training wurde angelegt!", Toast.LENGTH_SHORT).show()
+                        mAuth.signOut()
+                        finish()
+                    }
+                    else {
+                        Toast.makeText(applicationContext, it.exception?.message, Toast.LENGTH_SHORT).show()
+                    }
+                }
+                i++
+            }
+        }
 }

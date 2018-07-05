@@ -11,7 +11,6 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
-import android.widget.Toast
 import com.example.bjoerndell.navdraw.Adapter.MartialArtTypeAdapter
 import com.example.bjoerndell.navdraw.R
 import com.example.bjoerndell.navdraw.Services.DataService
@@ -19,18 +18,6 @@ import com.example.bjoerndell.navdraw.Utilitiy.EXTRA_MARTIALARTTYPE
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main.*
-import android.view.Gravity
-import android.widget.PopupWindow
-import android.content.Context.LAYOUT_INFLATER_SERVICE
-import android.view.LayoutInflater
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
-import java.text.DateFormat
-import java.text.SimpleDateFormat
-import java.util.*
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -104,9 +91,16 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 // Handle the camera action
             }
             R.id.nav_create_user -> {
-                val intent = Intent(this, CreateUser::class.java)
+                val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
-
+            }
+            R.id.nav_statistic -> {
+                val intent = Intent(this, StatisticActivity::class.java)
+                startActivity(intent)
+            }
+            R.id.nav_camera_activity -> {
+                val intent = Intent(this, UserProfileActivity::class.java)
+                startActivity(intent)
             }
         }
 

@@ -1,103 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/mats_blur"
-    tools:context=".Controller.CreateUser">
-
+    tools:context=".Controller.LoginActivity"
+    android:background="@drawable/mats_blur">
 
     <EditText
-        android:id="@+id/txtEmail"
+        android:id="@+id/loginActEmailTxt"
         android:layout_width="0dp"
-        android:layout_height="45dp"
+        android:layout_height="43dp"
         android:layout_marginEnd="32dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="32dp"
         android:background="@drawable/bt_fr"
         android:ems="10"
         android:hint="E-Mail"
         android:inputType="textEmailAddress"
+        android:text="bv@fino.team"
         android:textAlignment="center"
+        android:textAllCaps="true"
         android:textColor="@color/white"
+        android:textSize="14sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/loginActAskImg" />
 
     <EditText
-        android:id="@+id/txtPin"
+        android:id="@+id/loginActPinTxt"
         android:layout_width="0dp"
         android:layout_height="45dp"
         android:layout_marginEnd="32dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/bt_fr"
-        android:maxLength="6"
         android:ems="10"
         android:hint="PIN"
         android:inputType="numberPassword"
+        android:maxLength="6"
+        android:text="111111"
         android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginActEmailTxt" />
+
+    <Button
+        android:id="@+id/loginActLoginBtn"
+        android:layout_width="0dp"
+        android:layout_height="43dp"
+        android:layout_gravity="bottom"
+        android:layout_marginEnd="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/bt_fr_red"
+        android:text="@string/einloggen"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/loginActPwResetTxt" />
 
     <Button
-        android:id="@+id/createUserRegisterBtn"
+        android:id="@+id/loginActRegisterBtn"
         android:layout_width="0dp"
-        android:layout_height="43dp"
+        android:layout_height="40dp"
         android:layout_gravity="bottom"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="32dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="28dp"
-        android:background="@drawable/bt_fr_red"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/bt_fr_grey"
         android:text="@string/registrieren"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtPin"
+        app:layout_constraintTop_toBottomOf="@+id/loginActLoginBtn"
         app:layout_constraintVertical_bias="0.0" />
 
-    <Button
-        android:id="@+id/loginUserBtn"
-        android:layout_width="0dp"
-        android:layout_height="43dp"
-        android:layout_gravity="bottom"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="28dp"
-        android:background="@drawable/bt_fr_blue"
-        android:text="@string/einloggen"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtPin"
-        app:layout_constraintVertical_bias="0.261" />
-
-    <TextView
-        android:id="@+id/txtIdTest"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+    <ImageView
+        android:id="@+id/loginActAskImg"
+        android:layout_width="157dp"
+        android:layout_height="121dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="18sp"
+        android:layout_marginTop="32dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="ID" />
+        app:srcCompat="@drawable/askmain" />
+
+    <TextView
+        android:id="@+id/loginActPwResetTxt"
+        android:layout_width="0dp"
+        android:layout_height="25dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="204dp"
+        android:layout_marginTop="12dp"
+        android:text="@string/passwort_vergessen"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@+id/loginActPinTxt"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginActPinTxt" />
+
 
 
 </android.support.constraint.ConstraintLayout>

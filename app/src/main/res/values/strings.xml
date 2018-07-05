@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">NavDraw</string>
+    <string name="app_name">ASK</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
@@ -10,5 +10,25 @@
     <string name="long_title_name_gym">Akademie für Selbstverteidigung Kassel</string>
     <string name="profilbild">Profilbild?</string>
     <string name="title_activity_athlete_list_item">athlete_list_item</string>
-    <string name="einloggen">Einloggen</string>
+    <string name="einloggen">Log in</string>
+    <string name="passwort_vergessen"><u>PIN vergessen?</u></string>
+    <string name="aktualisieren">Aktualisieren</string>
+
+    <string name="TextNutzungsbedingungen">Ich bestätige die </string>
+    <string name="Nutzungsbedingungen"><font color="red">Nutzungsbedingungen</font></string>
+    <string name="ErrorNutzungsbedingungen">Bitte bestätige die <u>Nutzungsbedingungen</u></string>
+
+    <string name="TextDatenschutzbedingungen">Ich bestätige die </string>
+    <string name="Datenschutzbedingungen"><font color="ask_red">Datenschutzbedingungen</font></string>
+    <string name="ErrorDatenschutzbedingungen">Bitte bestätige die <u>Datenschutzbedingungen</u></string>
+
+
+    <string name="storage_permission_rationale_title">Storage permission required</string>
+    <string name="storage_permition_rationale_message">In order to take a picture, you must grant this permission!</string>
+    <string name="storage_permission_denied_message">Storage permission is required in order to take a photo with the camera</string>
+    <string name="lastName">Nachname</string>
+    <string name="firstName">Vorname</string>
+    <string name="descrProfileImg">Profilbild</string>
+    <string name="cancel">Abbrechen</string>
+    <string name="descrPin">PIN</string>
 </resources>

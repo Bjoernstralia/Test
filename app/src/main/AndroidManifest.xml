@@ -3,6 +3,8 @@
     package="com.example.bjoerndell.navdraw">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -21,11 +23,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Controller.CreateUser" />
         <activity android:name=".Controller.Athletes" />
         <activity android:name=".Controller.AthleteDetail" />
         <activity android:name=".Controller.TrainingDetail" />
-        <activity android:name=".Controller.ProfileUser"></activity>
+        <activity android:name=".Controller.LoginActivity" />
+        <activity android:name=".Controller.RegisterActivity" />
+        <activity android:name=".Controller.StatisticActivity" />
+        <activity android:name=".Controller.UserProfileActivity"></activity>
     </application>
 
 </manifest>

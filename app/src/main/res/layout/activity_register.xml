@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Controller.LoginActivity"
+    android:background="@drawable/mats_blur">
+
+    <EditText
+        android:id="@+id/registerActEmailTxt"
+        android:layout_width="0dp"
+        android:layout_height="43dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/bt_fr"
+        android:ems="10"
+        android:hint="E-Mail"
+        android:inputType="textEmailAddress"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/registerActAskImg" />
+
+    <EditText
+        android:id="@+id/registerActPinTxt"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/bt_fr"
+        android:ems="10"
+        android:hint="PIN"
+        android:inputType="numberPassword"
+        android:maxLength="6"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/registerActEmailTxt" />
+
+    <Button
+        android:id="@+id/registerActRegisterBtn"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="52dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/bt_fr_red"
+        android:text="@string/registrieren"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/registerActDatensCb"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/registerActAskImg"
+        android:layout_width="157dp"
+        android:layout_height="121dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/askmain" />
+
+    <CheckBox
+        android:id="@+id/registerActNutzungCb"
+        android:layout_width="0dp"
+        android:layout_height="46dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:buttonTint="@color/white"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@+id/registerActPinTxt"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/registerActPinTxt"
+        app:layout_constraintTop_toBottomOf="@+id/registerActPinTxt"
+        tools:text="Nutzungsbedingungen" />
+
+    <CheckBox
+        android:id="@+id/registerActDatensCb"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/white"
+        android:buttonTint = "@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/registerActNutzungCb"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/registerActNutzungCb"
+        app:layout_constraintTop_toBottomOf="@+id/registerActNutzungCb"
+        tools:text="Datenschutzbedingungen" />
+
+
+</android.support.constraint.ConstraintLayout>
