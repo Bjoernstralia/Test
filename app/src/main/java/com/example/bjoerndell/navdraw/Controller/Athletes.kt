@@ -68,13 +68,9 @@ class Athletes : AppCompatActivity() {
         fbDbInst = fbDb.getReference("Users")
 
         if (fbAuth.currentUser == null){
-            Toast.makeText(this,"Kein User eingeloggt", Toast.LENGTH_LONG).show()
+            //Toast.makeText(this,"Kein User eingeloggt", Toast.LENGTH_LONG).show()
             fbAuth.signInAnonymously()
-        } else{
-            Toast.makeText(this,"${fbAuth.currentUser!!.email}", Toast.LENGTH_LONG).show()
         }
-
-
 
         getUserList()
         /*

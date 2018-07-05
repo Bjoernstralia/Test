@@ -8,23 +8,13 @@
             android:id="@+id/nav_start_training"
             android:icon="@drawable/ic_timer_black_24dp"
             android:title="Training" />
-
-        <item
-            android:id="@+id/nav_camera_activity"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Kamera"/>
     </group>
     <item android:title="Account">
         <menu>
             <item
                 android:id="@+id/nav_create_user"
                 android:icon = "@drawable/ic_account_circle_black"
-                android:title="@string/registrieren"/>
-            <item
-                android:id="@+id/nav_statistic"
-                android:icon= "@drawable/ic_menu_slideshow"
-                android:title="Profil"/>
+                android:title="Mein Profil"/>
         </menu>
     </item>
-
 </menu>

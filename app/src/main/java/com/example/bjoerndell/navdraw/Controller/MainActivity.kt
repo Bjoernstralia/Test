@@ -15,6 +15,7 @@ import com.example.bjoerndell.navdraw.Adapter.MartialArtTypeAdapter
 import com.example.bjoerndell.navdraw.R
 import com.example.bjoerndell.navdraw.Services.DataService
 import com.example.bjoerndell.navdraw.Utilitiy.EXTRA_MARTIALARTTYPE
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main.*
@@ -23,7 +24,7 @@ import kotlinx.android.synthetic.main.content_main.*
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     lateinit var adapter: MartialArtTypeAdapter
-
+    lateinit var fbAuth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,11 +43,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         nav_view.setNavigationItemSelectedListener(this)
 
-
-        // Start Dummy Daten
+        fbAuth = FirebaseAuth.getInstance()
+        if (fbAuth.currentUser == null){
+            fbAuth.signInAnonymously()
+        }
+        
         adapter = MartialArtTypeAdapter(this, DataService.martialarts)
         contentListViewMain.adapter = adapter
-        // Ende
+
 
         contentListViewMain.setOnItemClickListener { parent: AdapterView<*>?, view: View?, position: Int, id: Long ->
             val listItem = DataService.martialarts[position]
@@ -92,14 +96,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
             R.id.nav_create_user -> {
                 val intent = Intent(this, LoginActivity::class.java)
-                startActivity(intent)
-            }
-            R.id.nav_statistic -> {
-                val intent = Intent(this, StatisticActivity::class.java)
-                startActivity(intent)
-            }
-            R.id.nav_camera_activity -> {
-                val intent = Intent(this, UserProfileActivity::class.java)
                 startActivity(intent)
             }
         }
