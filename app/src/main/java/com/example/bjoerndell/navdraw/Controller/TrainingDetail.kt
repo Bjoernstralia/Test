@@ -12,6 +12,7 @@ import kotlinx.android.synthetic.main.activity_training_detail.*
 import android.widget.Toast
 import com.example.bjoerndell.navdraw.Model.AthleteTrainingLog
 import com.example.bjoerndell.navdraw.Model.TrainingType
+import com.example.bjoerndell.navdraw.Model.User
 import com.example.bjoerndell.navdraw.Utilitiy.EXTRA_ATHLETE
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
@@ -23,6 +24,7 @@ class TrainingDetail : AppCompatActivity() {
 
     lateinit var adapter: TrainingDetailAdapter
     lateinit var mAuth: FirebaseAuth
+    lateinit var parceUser: User
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,10 +32,8 @@ class TrainingDetail : AppCompatActivity() {
         setContentView(R.layout.activity_training_detail)
 
         val shortMA = intent.getStringExtra(EXTRA_MARTIALARTTYPE)
-        val athlete = intent.getStringExtra(EXTRA_ATHLETE)
 
-        var serviceData: List<TrainingType>
-
+        parceUser = intent.getParcelableExtra(EXTRA_ATHLETE)
 
         when(shortMA){
             "BJJ" -> adapter = TrainingDetailAdapter(this, DataService.bjj)
@@ -62,7 +62,7 @@ class TrainingDetail : AppCompatActivity() {
         trainingdetRecView.adapter = adapter
 
         btnStartTraining.setOnClickListener() {
-            WriteData(athlete)
+            writeDate(parceUser) //Objekt übergeben oder macht kann man es auch direkt in der Funktion ansprechen, da es über "lateinit var" instanziert wurde?
         }
     }
 
@@ -70,7 +70,7 @@ class TrainingDetail : AppCompatActivity() {
         Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
     }
 
-    fun WriteData(athlete: String) {
+    private fun writeDate(parceUser: User) {
 
         mAuth = FirebaseAuth.getInstance()
 
@@ -89,11 +89,9 @@ class TrainingDetail : AppCompatActivity() {
 
             while (i != selectedTraining.count()) {
                 var selectedItem = selectedTraining[i].TrainingTypeName
-                var duration = selectedTraining[i].Duration
-                println(selectedItem)
-
+                var duration = selectedTraining[i].duration
                 var trainingId = fb.push().key
-                var detail = AthleteTrainingLog(trainingId, user!!.uid, selectedItem,currentDate)
+                var detail = AthleteTrainingLog(trainingId, user!!.uid, selectedItem, currentDate, duration, parceUser.name,parceUser.lastName)
 
                 //Mit oder ohne .child?
                 //fb.setValue(trainingDetail)

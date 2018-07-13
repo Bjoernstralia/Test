@@ -30,17 +30,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
-
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
-        }
-
         val toggle = ActionBarDrawerToggle(
                 this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
         drawer_layout.addDrawerListener(toggle)
         toggle.syncState()
-
         nav_view.setNavigationItemSelectedListener(this)
 
         fbAuth = FirebaseAuth.getInstance()
@@ -51,7 +44,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         adapter = MartialArtTypeAdapter(this, DataService.martialarts)
         contentListViewMain.adapter = adapter
 
-
         contentListViewMain.setOnItemClickListener { parent: AdapterView<*>?, view: View?, position: Int, id: Long ->
             val listItem = DataService.martialarts[position]
             //Toast.makeText(this , "clicken on ${listItem.nameType} cell", Toast.LENGTH_SHORT).show()
@@ -60,8 +52,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             intentAthletes.putExtra(EXTRA_MARTIALARTTYPE, listItem.NameTypeShort)
             startActivity(intentAthletes)
         }
-
-
     }
 
     override fun onBackPressed() {
@@ -96,6 +86,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
             R.id.nav_create_user -> {
                 val intent = Intent(this, LoginActivity::class.java)
+                startActivity(intent)
+            }
+            R.id.nav_statistics -> {
+                val intent = Intent(this, StatisticActivity::class.java)
                 startActivity(intent)
             }
         }

@@ -1,8 +1,13 @@
 package com.example.bjoerndell.navdraw.Model
 
-import java.util.*
+import java.time.Duration
+
+class AthleteTrainingLog(val id: String, val athleteId: String, val training: String,
+                         val trainingDate: String, val duration: Double, val athleteFName: String,
+                         val athleteLName: String) {
+
+    constructor():this("","","","", 0.0, "", "")
 
 
-class AthleteTrainingLog(val Id: String, val AthleteId: String, val Training: String,
-                         val TrainingDate: String) {
 }
+

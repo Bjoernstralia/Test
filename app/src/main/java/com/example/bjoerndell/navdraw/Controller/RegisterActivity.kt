@@ -13,6 +13,7 @@ import com.example.bjoerndell.navdraw.Utilitiy.EXTRA_PASSWORDLENGTH
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_register.*
 
 class RegisterActivity : AppCompatActivity() {

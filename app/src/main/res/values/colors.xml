@@ -8,4 +8,6 @@
     <color name="ask_red">#a40a1a</color>
     <color name="green">#fe05c22e</color>
     <color name="blue">#0c86d7</color>
+    <color name="transparent">#00000000</color>
+
 </resources>

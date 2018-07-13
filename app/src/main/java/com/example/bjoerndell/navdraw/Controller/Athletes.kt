@@ -3,40 +3,30 @@ package com.example.bjoerndell.navdraw.Controller
 import android.app.ProgressDialog
 import android.content.Intent
 import android.content.res.Configuration
+import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.annotation.RequiresApi
 import android.support.v7.widget.GridLayoutManager
 import com.example.bjoerndell.navdraw.Adapter.AthleteProfileAdapter
 import com.example.bjoerndell.navdraw.R
-import com.example.bjoerndell.navdraw.R.id.recViewAthletes
-import com.example.bjoerndell.navdraw.Services.DataService
 import com.example.bjoerndell.navdraw.Utilitiy.EXTRA_MARTIALARTTYPE
 import kotlinx.android.synthetic.main.activity_athletes.*
-import android.view.Gravity
-import android.content.Context.LAYOUT_INFLATER_SERVICE
 import android.view.LayoutInflater
 import com.example.bjoerndell.navdraw.Model.User
 import com.example.bjoerndell.navdraw.Utilitiy.EXTRA_ATHLETE
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.*
-import android.content.DialogInterface
 import android.support.v7.app.AlertDialog
-import android.text.InputType
 import android.text.TextUtils
-import android.util.Log
 import android.widget.*
 import com.example.bjoerndell.navdraw.Utilitiy.EXTRA_PASSWORDLENGTH
-import com.google.android.gms.tasks.OnSuccessListener
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
-import java.util.concurrent.CountDownLatch
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.DatabaseReference
-import com.google.android.gms.tasks.TaskCompletionSource
-import com.google.android.gms.tasks.Tasks
 
 
 class Athletes : AppCompatActivity() {
@@ -48,8 +38,10 @@ class Athletes : AppCompatActivity() {
     lateinit var fbDbInst: DatabaseReference
     lateinit var mUserList: MutableList<User>
 
+    lateinit var alert: AlertDialog
+    lateinit var builder: AlertDialog.Builder
 
-    private var mText = ""
+    private var pin = ""
     lateinit var shortMA: String
 
 
@@ -57,12 +49,12 @@ class Athletes : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_athletes)
 
+        showLoadingDialog("lade das Team...")
+
+
         shortMA = intent.getStringExtra(EXTRA_MARTIALARTTYPE)
-
-
         mUserList = mutableListOf()
         //mUserList.addAll(DataService.users)
-
         fbAuth = FirebaseAuth.getInstance()
         fbDb = FirebaseDatabase.getInstance()
         fbDbInst = fbDb.getReference("Users")
@@ -104,6 +96,7 @@ class Athletes : AppCompatActivity() {
                         mUserList.add(user!!)
                     }
                     setAdapter(mUserList)
+                    alert.dismiss()
                 }
             }
             override fun onCancelled(databaseError: DatabaseError) {
@@ -115,7 +108,11 @@ class Athletes : AppCompatActivity() {
 
         adapter = AthleteProfileAdapter(this, list) { athlete ->
             //login user
-            showLoginDialog(athlete.email, shortMA)
+            // kann ich hier eine Variable mit UserNamen füllen und später in anderer Funktion nutzen,
+            // oder ist es besser die Variable über die folgenden Funktionen weiterzugeben?
+            //showLoginDialog(athlete.email, )
+            showLoginDialog(athlete)
+
         }
 
         var spanCount = 2
@@ -132,7 +129,22 @@ class Athletes : AppCompatActivity() {
         recViewAthletes.adapter = adapter
     }
 
-    fun showLoginDialog(email: String, shortMA: String) {
+    fun showLoadingDialog(textOnScreen: String){
+
+        builder = AlertDialog.Builder(this)
+        val view = LayoutInflater.from(this).inflate(R.layout.dialog_loading,null)
+        val progressBar = view.findViewById<ProgressBar>(R.id.dialogLoadingProgessBar)
+        val text = view.findViewById<TextView>(R.id.dialogLoadingMessageTxt)
+        text.text = textOnScreen
+        builder.setView(view)
+
+        alert = builder.create()
+        alert.show()
+
+    }
+
+    //fun showLoginDialog(email: String, shortMA: String) {
+    fun showLoginDialog(user: User) {
 
         val custBuilder = AlertDialog.Builder(this)
         val custView = LayoutInflater.from(this).inflate(R.layout.dialog_login, null)
@@ -148,11 +160,12 @@ class Athletes : AppCompatActivity() {
                 custPin.error = "Die PIN muss aus mind. $EXTRA_PASSWORDLENGTH Zahlen bestehen"
             } else
             {
-                mText = custPin.text.toString()
-                if((mText.isEmpty()) or (mText == "")) {
+                pin = custPin.text.toString()
+                if((pin.isEmpty()) or (pin == "")) {
                     Toast.makeText(this,"Bitte gib die PIN ein", Toast.LENGTH_LONG).show()
                 } else {
-                    loginAthlete(email, mText)
+                    //loginAthlete(user.email, mText)
+                    loginAthlete(user)
                 }
             }
         }
@@ -160,15 +173,15 @@ class Athletes : AppCompatActivity() {
         custBuilder.show()
     }
 
-    fun loginAthlete(name:String, pin:String){
-
+    //private fun loginAthlete(email:String, pin:String){
+    private fun loginAthlete(user: User){
         val progress = ProgressDialog(this)
         progress.setMessage("einloggen...")
         progress.setCancelable(false)
         progress.show()
 
         fbAuth = FirebaseAuth.getInstance()
-        fbAuth.signInWithEmailAndPassword(name, pin).addOnCompleteListener {task: Task<AuthResult> ->
+        fbAuth.signInWithEmailAndPassword(user.email, pin).addOnCompleteListener {task: Task<AuthResult> ->
             progress.dismiss()
             if(task.isSuccessful){
 
@@ -177,10 +190,10 @@ class Athletes : AppCompatActivity() {
                 finish()
                 startActivity(profileIntent)
 
-                val listItem = name
                 val intentTraining = Intent(this, TrainingDetail::class.java)
                 intentTraining.putExtra(EXTRA_MARTIALARTTYPE, shortMA)
-                intentTraining.putExtra(EXTRA_ATHLETE, listItem)
+                //intentTraining.putExtra(EXTRA_ATHLETE, user.email)
+                intentTraining.putExtra(EXTRA_ATHLETE, user)
                 startActivity(intentTraining)
             }else {
                 val exception = task.exception?.message

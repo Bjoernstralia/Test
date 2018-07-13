@@ -6,7 +6,12 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.design.widget.NavigationView
+import android.support.v4.view.GravityCompat
+import android.support.v7.app.ActionBarDrawerToggle
 import android.text.TextUtils
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.EditText
 import android.widget.Toast
 import com.example.bjoerndell.navdraw.R
@@ -15,6 +20,8 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.app_bar_main.*
 
 class LoginActivity : AppCompatActivity() {
 
@@ -64,7 +71,6 @@ class LoginActivity : AppCompatActivity() {
 
     }
 
-
     fun restPassword(){
 
         if(TextUtils.isEmpty(email.text.toString())){
@@ -81,7 +87,6 @@ class LoginActivity : AppCompatActivity() {
             }
         }
     }
-
 
     fun loginUser(){
         //val email = loginActEmailTxt.text.toString().trim()
@@ -115,4 +120,5 @@ class LoginActivity : AppCompatActivity() {
             }
         }
     }
+
 }

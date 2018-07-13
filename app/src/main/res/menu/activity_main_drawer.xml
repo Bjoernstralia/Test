@@ -8,6 +8,10 @@
             android:id="@+id/nav_start_training"
             android:icon="@drawable/ic_timer_black_24dp"
             android:title="Training" />
+        <item
+            android:id="@+id/nav_statistics"
+            android:title="Statistik"
+            android:icon="@drawable/ic_menu_manage"/>
     </group>
     <item android:title="Account">
         <menu>
